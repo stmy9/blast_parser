@@ -156,11 +156,13 @@ def process_fasta_line(line):
 
         if fasta_data not in sequences and fasta_data not in sample_fasta:
             sample_fasta[fasta_data] = 1
+            last_sample_name = fasta_data
+            next_is_sequence = True
+		
         elif fasta_data not in sequences:
             sample_fasta[fasta_data] += 1
-
-        last_sample_name = fasta_data
-        next_is_sequence = True
+            last_sample_name = fasta_data
+            next_is_sequence = True
 
     elif next_is_sequence:
         sequence_data += line
